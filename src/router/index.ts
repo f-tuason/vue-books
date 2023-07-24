@@ -37,12 +37,11 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const usr = userStore()
-  //if (to.path === '/' && to.meta.requiresAuth && !usr.user) {
-  //  next({ name: 'login' })
-  //} else {
-  //  next();
-  //}
-  next();
+  if (to.path === '/' && to.meta.requiresAuth && !usr.user) {
+    next({ name: 'login' })
+  } else {
+    next();
+  }
 });
 
 export default router
